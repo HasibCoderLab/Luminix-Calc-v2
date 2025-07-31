@@ -1,124 +1,130 @@
+/* Glassmorphism + Responsive + Modern Animation */
+
 :root {
-    --main-bg: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
-    --glow1: #1dd1a1;
-    --glow2: #ff9f43;
-    --glow3: #ff6b6b;
+    --blur-bg: rgba(255, 255, 255, 0.1);
+    --border-glow: rgba(255, 255, 255, 0.3);
+    --text-glow: rgba(255, 255, 255, 0.8);
+    --accent: #00f2fe;
+    --accent2: #4facfe;
   }
+  
   * {
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+  
   body {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--main-bg);
-    animation: gradientShift 10s infinite alternate;
+    background: linear-gradient(135deg, #1e1e2f, #3a3a5c);
+    overflow: hidden;
   }
-  @keyframes gradientShift {
-    0% { background: var(--main-bg); }
-    50% { background: linear-gradient(45deg, #141e30, #243b55); }
-    100% { background: linear-gradient(45deg, #2b5876, #4e4376); }
+  
+  .glass-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-in-out;
   }
-  #calculator {
-    background: #1f2937;
-    border-radius: 15px;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  
+  .calculator {
+    background: var(--blur-bg);
+    border: 1px solid var(--border-glow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     width: 320px;
-    animation: slideIn 1.2s ease-out;
+    max-width: 90%;
+    backdrop-filter: blur(25px);
+    transition: all 0.3s ease;
   }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  
   #display {
     width: 100%;
     padding: 15px;
-    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-size: 1.7rem;
     border: none;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
     text-align: right;
-    background: #2c3e50;
-    color: #ecf0f1;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-    animation: borderGlow 3s infinite alternate;
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+    animation: inputGlow 4s infinite alternate;
   }
-  @keyframes borderGlow {
-    0% { box-shadow: 0 0 10px var(--glow1); }
-    50% { box-shadow: 0 0 15px var(--glow2); }
-    100% { box-shadow: 0 0 20px var(--glow3); }
+  
+  @keyframes inputGlow {
+    0% { box-shadow: inset 0 0 10px var(--accent); }
+    100% { box-shadow: inset 0 0 20px var(--accent2); }
   }
+  
   #keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
   }
+  
   #keys button {
     padding: 15px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     border: none;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
-    color: white;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #2d2d4a, #1e1e33);
+    color: #ffffffcc;
     cursor: pointer;
-    transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease, background 0.3s ease;
   }
+  
   #keys button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(45deg, #48dbfb, #0abde3);
-    box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+    transform: scale(1.08);
+    background: linear-gradient(145deg, #00f2fe, #4facfe);
+    color: white;
   }
+  
   #keys button:active {
     transform: scale(0.95);
-    background: #2c3e50;
+    background: #14142b;
   }
+  
   #keys button[value="="] {
-    background: linear-gradient(45deg, #1dd1a1, #10ac84);
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    color: white;
     font-weight: bold;
-    animation: glow 2s infinite alternate;
+    animation: pulse 2s infinite;
   }
-  @keyframes glow {
-    0% { box-shadow: 0 0 10px var(--glow1); }
-    100% { box-shadow: 0 0 20px #10ac84; }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 10px var(--accent); }
+    100% { box-shadow: 0 0 20px var(--accent2); }
   }
-  #keys button[value="AC"] {
-    background: linear-gradient(45deg, #ee5253, #ff6b6b);
-  }
+  
+  #keys button[value="AC"],
   #keys button[value="Del"] {
-    background: linear-gradient(45deg, #576574, #8395a7);
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: white;
   }
+  
   footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    color: #ecf0f1;
-    font-weight: 600;
+    margin-top: 20px;
+    color: #ffffffa8;
     font-size: 0.9rem;
-    animation: footerGlow 3s infinite alternate;
+    animation: textPulse 3s infinite alternate;
   }
-  @keyframes footerGlow {
-    0% { color: var(--glow1); text-shadow: 0 0 10px var(--glow1); }
-    50% { color: var(--glow2); text-shadow: 0 0 15px var(--glow2); }
-    100% { color: var(--glow3); text-shadow: 0 0 20px var(--glow3); }
-  }
-  @media (max-width: 480px) {
-    #calculator {
-      width: 90%;
-      padding: 10px;
-    }
-    #display {
-      font-size: 1.3rem;
-      padding: 10px;
-    }
-    #keys button {
-      font-size: 1rem;
-      padding: 12px;
-    }
+  
+  @keyframes textPulse {
+    0% { text-shadow: 0 0 5px var(--accent); }
+    100% { text-shadow: 0 0 10px var(--accent2); }
   }
   
