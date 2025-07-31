@@ -1,0 +1,124 @@
+:root {
+    --main-bg: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+    --glow1: #1dd1a1;
+    --glow2: #ff9f43;
+    --glow3: #ff6b6b;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--main-bg);
+    animation: gradientShift 10s infinite alternate;
+  }
+  @keyframes gradientShift {
+    0% { background: var(--main-bg); }
+    50% { background: linear-gradient(45deg, #141e30, #243b55); }
+    100% { background: linear-gradient(45deg, #2b5876, #4e4376); }
+  }
+  #calculator {
+    background: #1f2937;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    width: 320px;
+    animation: slideIn 1.2s ease-out;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  #display {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: right;
+    background: #2c3e50;
+    color: #ecf0f1;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+    animation: borderGlow 3s infinite alternate;
+  }
+  @keyframes borderGlow {
+    0% { box-shadow: 0 0 10px var(--glow1); }
+    50% { box-shadow: 0 0 15px var(--glow2); }
+    100% { box-shadow: 0 0 20px var(--glow3); }
+  }
+  #keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  #keys button {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  #keys button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #48dbfb, #0abde3);
+    box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+  }
+  #keys button:active {
+    transform: scale(0.95);
+    background: #2c3e50;
+  }
+  #keys button[value="="] {
+    background: linear-gradient(45deg, #1dd1a1, #10ac84);
+    font-weight: bold;
+    animation: glow 2s infinite alternate;
+  }
+  @keyframes glow {
+    0% { box-shadow: 0 0 10px var(--glow1); }
+    100% { box-shadow: 0 0 20px #10ac84; }
+  }
+  #keys button[value="AC"] {
+    background: linear-gradient(45deg, #ee5253, #ff6b6b);
+  }
+  #keys button[value="Del"] {
+    background: linear-gradient(45deg, #576574, #8395a7);
+  }
+  footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #ecf0f1;
+    font-weight: 600;
+    font-size: 0.9rem;
+    animation: footerGlow 3s infinite alternate;
+  }
+  @keyframes footerGlow {
+    0% { color: var(--glow1); text-shadow: 0 0 10px var(--glow1); }
+    50% { color: var(--glow2); text-shadow: 0 0 15px var(--glow2); }
+    100% { color: var(--glow3); text-shadow: 0 0 20px var(--glow3); }
+  }
+  @media (max-width: 480px) {
+    #calculator {
+      width: 90%;
+      padding: 10px;
+    }
+    #display {
+      font-size: 1.3rem;
+      padding: 10px;
+    }
+    #keys button {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+  
