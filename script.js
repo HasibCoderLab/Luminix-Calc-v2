@@ -8,7 +8,7 @@ document.getElementById("keys").addEventListener("click", (ev) => {
     try {
       display.value = eval(display.value);
     } catch {
-      display.value = "Syntax Error 🔪";
+      display.value = "❌ Invalid Expression";
     }
   } else if (value === "AC") {
     display.value = "";
